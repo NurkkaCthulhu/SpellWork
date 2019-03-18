@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void workoutButton(View v) {
-
+        Intent i = new Intent(this, WorkoutActivity.class);
+        startActivity(i);
     }
 }
