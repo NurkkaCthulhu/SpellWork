@@ -40,5 +40,7 @@ public class WorkoutActivity extends AppCompatActivity {
         Utils.hideSystemUI(decorView);
     }
 
+    public void backToMainActivity(View v) {
 
+    }
 }
