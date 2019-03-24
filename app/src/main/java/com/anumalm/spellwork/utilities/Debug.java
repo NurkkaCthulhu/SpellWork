@@ -29,7 +29,7 @@ public class Debug {
     public static void log(String tag, String source, String message, int level) {
         // BuildConfig.DEBUG is automatically turned to "false" at build.
         if(level <= DEBUG_LEVEL && BuildConfig.DEBUG) {
-            Log.d(tag, "Problem in " + source + ": " + message);
+            Log.d(tag, "Debugging " + source + ": " + message);
         }
     }
 }
