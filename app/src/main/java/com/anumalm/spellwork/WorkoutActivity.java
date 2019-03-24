@@ -41,6 +41,6 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     public void backToMainActivity(View v) {
-
+        finish();
     }
 }
