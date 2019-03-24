@@ -10,10 +10,9 @@
     <Button
         android:layout_width="65dp"
         android:layout_height="65dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="519dp"
-        android:onClick="workoutButton"
-        android:background="@drawable/button_workout"/>
+        android:background="@drawable/button_workout"
+        android:onClick="workoutButton" />
 
 </RelativeLayout>
