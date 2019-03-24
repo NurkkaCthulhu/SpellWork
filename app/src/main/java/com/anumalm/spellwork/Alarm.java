@@ -34,7 +34,7 @@ public class Alarm extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, ":mywakelocktag");
-        wl.acquire();
+        wl.acquire(1000);
 
         Debug.log("ALARM", "Alarm/onReceive", "Time to send notification!", 1);
 
@@ -63,6 +63,8 @@ public class Alarm extends BroadcastReceiver {
      * @param context           The Context that called this method.
      */
     public void cancelAlarm(Context context) {
+        Debug.log("ALARM", "Alarm/cancelAlarm", "Canceling alarm...", 1);
+
         Intent intent = new Intent(context, Alarm.class);
         PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
