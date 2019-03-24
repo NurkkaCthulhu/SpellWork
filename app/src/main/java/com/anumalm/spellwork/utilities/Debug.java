@@ -1,6 +1,8 @@
-package com.anumalm.spellwork;
+package com.anumalm.spellwork.utilities;
 
 import android.util.Log;
+
+import com.anumalm.spellwork.BuildConfig;
 
 /**
  * Custom debug class.

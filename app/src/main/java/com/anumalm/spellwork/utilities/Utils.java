@@ -1,4 +1,4 @@
-package com.anumalm.spellwork;
+package com.anumalm.spellwork.utilities;
 
 import android.view.View;
 

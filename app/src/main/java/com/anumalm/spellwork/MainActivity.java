@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.anumalm.spellwork.utilities.Utils;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
