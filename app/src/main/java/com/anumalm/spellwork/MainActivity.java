@@ -43,4 +43,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, WorkoutActivity.class);
         startActivity(i);
     }
+
+    public void startAlarms(View v) {
+        Intent i = new Intent(this, AlarmService.class);
+        startService(i);
+    }
 }
