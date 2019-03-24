@@ -18,10 +18,10 @@ import com.anumalm.spellwork.utilities.Debug;
 public class AlarmService extends Service {
 
     Alarm alarm = new Alarm();
+    boolean alarmStarted = false;
 
     /**
      * Overrides Service's onCreate-method.
-     * Mandatory.
      */
     @Override
     public void onCreate() {
@@ -32,16 +32,24 @@ public class AlarmService extends Service {
     /**
      * Overrides Service's onStartCommand-method.
      *
-     * Starts the alarms when service has started.
+     * Checks if you want to stop or start the alarms and calls the alarm method in question.
      *
      * @param intent        The Intent supplied to Context.startService(Intent), as given.
      * @param flags         Additional data about this start request.
      * @param startId       A unique integer representing this specific request to start.
-     * @return
+     * @return              The return value indicates what semantics the system should use for the service's current started state.
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        alarm.setAlarm(this);
+        String buttonPressed = intent.getStringExtra("buttonPressed");
+        if (buttonPressed.equalsIgnoreCase("start") && !alarmStarted) {
+            alarmStarted = true;
+            alarm.setAlarm(this);
+        } else if (buttonPressed.equalsIgnoreCase("stop") && alarmStarted) {
+            alarmStarted = false;
+            alarm.cancelAlarm(this);
+        }
+
         return START_STICKY;
     }
 
@@ -49,7 +57,7 @@ public class AlarmService extends Service {
      * Overrides Service's onBind-method.
      *
      * @param intent        The Intent that was used to bind to this service, as given to Context.bindService.
-     * @return
+     * @return              Return an IBinder through which clients can call on to the service.
      */
     @Override
     public IBinder onBind(Intent intent) {
