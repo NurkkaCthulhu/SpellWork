@@ -8,8 +8,22 @@ import android.view.View;
 
 import com.anumalm.spellwork.utilities.Utils;
 
+/**
+ * Main Activity of the app.
+ *
+ * @author      Anu Malm     anu.malm@tuni.fi
+ * @version     2019.03.24
+ * @since       1.0
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Overrides AppCompatActivity's onCreate-method.
+     *
+     * Sets the layout for the screen, creates default settings and hides system UI.
+     *
+     * @param savedInstanceState        Bundle that's somewhere in AppCompatActivity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
         createDefaultSettings();
     }
 
+    /**
+     * Overrides AppCompatActivity's onWindowFocusChanged-method.
+     *
+     * Hides system UI if the app has focus.
+     *
+     * @param hasFocus                  Whether the window now has focus.
+     */
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -26,11 +47,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Gets the current view and hides the system UI with method from Utils.
+     */
     private void getViewAndHideUI() {
         View decorView = getWindow().getDecorView();
         Utils.hideSystemUI(decorView);
     }
 
+    /**
+     * Creates some default settings for the app.
+     */
     private void createDefaultSettings() {
         SharedPreferences settings = getSharedPreferences("UserSettings", 0);
         SharedPreferences.Editor editor = settings.edit();
@@ -39,11 +66,25 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
     }
 
+    /**
+     * Called when workout button is clicked.
+     *
+     * Starts the WorkoutActivity.
+     *
+     * @param v                         The click source.
+     */
     public void workoutButton(View v) {
         Intent i = new Intent(this, WorkoutActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Called when alarm start button is clicked.
+     *
+     * Starts the AlarmService.
+     *
+     * @param v                         The click source.
+     */
     public void startAlarms(View v) {
         Intent i = new Intent(this, AlarmService.class);
         startService(i);
