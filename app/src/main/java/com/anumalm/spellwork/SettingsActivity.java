@@ -45,6 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
      * @param v                 The click source.
      */
     public void backButton(View v) {
+        Utils.playButtonSound();
         finish();
     }
 }

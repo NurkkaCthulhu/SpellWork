@@ -19,8 +19,6 @@ import com.anumalm.spellwork.utilities.Utils;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private MediaPlayer buttonPlayer;
-
     /**
      * Overrides AppCompatActivity's onCreate-method.
      *
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttonPlayer = MediaPlayer.create(this, R.raw.button);
+        Utils.createButtonPlayer(this);
         getViewAndHideUI();
         createDefaultSettings();
     }
@@ -79,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v                         The click source.
      */
     public void workoutButton(View v) {
-        buttonPlayer.start();
+        Utils.playButtonSound();
         Intent i = new Intent(this, WorkoutActivity.class);
         startActivity(i);
     }
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v                         The click source.
      */
     public void settingsButton(View v) {
-        buttonPlayer.start();
+        Utils.playButtonSound();
         Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
     }
