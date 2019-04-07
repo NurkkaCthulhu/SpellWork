@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.anumalm.spellwork.utilities.Debug;
 import com.anumalm.spellwork.utilities.Utils;
 
 /**
@@ -58,8 +59,9 @@ public class WorkoutActivity extends AppCompatActivity {
      */
     private void getSettings() {
         SharedPreferences settings = getSharedPreferences("UserSettings", 0);
-        String putThisToText = settings.getString("TestOne", "").toString();
-        putThisToText += settings.getString("TestTwo", "").toString();
+        Debug.log("ALARM", "MainActivity/createDefaultSettings", "All possible settings: " + settings.getAll(), 1);
+        String putThisToText = settings.getString("TestOne", "");
+        putThisToText += settings.getString("TestTwo", "");
         t.setText(putThisToText);
     }
 
