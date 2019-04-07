@@ -87,16 +87,15 @@ public class MainActivity extends AppCompatActivity {
      * @param v                         The click source.
      */
     public void manageAlarm(View v) {
-        String extra = "none";
         if (v.getId() == R.id.start) {
             Debug.log("ALARM", "MainActivity/manageAlarm", "start button pressed", 2);
-            extra = "start";
+            Intent i = new Intent(this, AlarmService.class);
+            startService(i);
         } else if (v.getId() == R.id.stop) {
             Debug.log("ALARM", "MainActivity/manageAlarm", "stop button pressed", 2);
-            extra = "stop";
+            Intent i = new Intent(this, AlarmService.class);
+            stopService(i);
         }
-        Intent i = new Intent(this, AlarmService.class);
-        i.putExtra("buttonPressed", extra);
-        startService(i);
+
     }
 }

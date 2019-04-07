@@ -41,13 +41,9 @@ public class AlarmService extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String buttonPressed = intent.getStringExtra("buttonPressed");
-        if (buttonPressed.equalsIgnoreCase("start") && !alarmStarted) {
+        if (!alarmStarted) {
             alarmStarted = true;
             alarm.setAlarm(this);
-        } else if (buttonPressed.equalsIgnoreCase("stop") && alarmStarted) {
-            alarmStarted = false;
-            alarm.cancelAlarm(this);
         }
 
         return START_STICKY;
@@ -62,6 +58,14 @@ public class AlarmService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    @Override
+    public void onDestroy() {
+        Debug.log("ALARM", "AlarmService/onCreate", "Service was stopped", 1);
+
+        alarm.cancelAlarm(this);
+
     }
 
 
