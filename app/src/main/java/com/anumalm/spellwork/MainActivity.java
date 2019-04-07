@@ -13,7 +13,7 @@ import com.anumalm.spellwork.utilities.Utils;
  * Main Activity of the app.
  *
  * @author      Anu Malm     anu.malm@tuni.fi
- * @version     2019.03.24
+ * @version     2019.04.07
  * @since       1.0
  */
 public class MainActivity extends AppCompatActivity {
