@@ -84,33 +84,39 @@ public class Alarm extends BroadcastReceiver {
      * @param context           The Context in which the receiver is running.
      */
     private void showNotification(Context context, Intent intent) {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        String channelId = "my_channel_01";
+        String channelName = "Spellword alarms";
 
-        int notificationId = 1;
-        String channelId = "channel-01";
-        String channelName = "Channel Name";
-        int importance = NotificationManager.IMPORTANCE_HIGH;
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+                new Intent(context, MainActivity.class), 0);
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(context, channelId)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("New workout!")
+                        .setContentText("Time to get up u lazy lad");
+
+        mBuilder.setContentIntent(contentIntent);
+
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel mChannel = new NotificationChannel(
-                    channelId, channelName, importance);
-            notificationManager.createNotificationChannel(mChannel);
+                    channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+            mNotificationManager.createNotificationChannel(mChannel);
+        } else {
+            // Set vibration to notification
+            mBuilder.setVibrate(new long[] {1000,1000});
+            // Set alarm sound to an annoying chirp sound
+            Uri alarmSound = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.alarm);
+            mBuilder.setSound(alarmSound);
+            mBuilder.setAutoCancel(true);
         }
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("New workout!")
-                .setContentText("Time to get up u lazy lad");
+        mNotificationManager.notify(1, mBuilder.build());
 
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        stackBuilder.addNextIntent(intent);
-        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                0,
-                PendingIntent.FLAG_UPDATE_CURRENT
-        );
-        mBuilder.setContentIntent(resultPendingIntent);
-
-        notificationManager.notify(notificationId, mBuilder.build());
     }
 
 
