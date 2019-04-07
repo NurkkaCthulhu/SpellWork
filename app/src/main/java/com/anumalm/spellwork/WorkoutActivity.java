@@ -78,7 +78,7 @@ public class WorkoutActivity extends AppCompatActivity {
      *
      * @param v                 The click source.
      */
-    public void backToMainActivity(View v) {
+    public void backButton(View v) {
         finish();
     }
 }
