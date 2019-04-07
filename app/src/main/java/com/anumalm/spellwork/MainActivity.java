@@ -63,10 +63,17 @@ public class MainActivity extends AppCompatActivity {
      */
     private void createDefaultSettings() {
         SharedPreferences settings = getSharedPreferences("UserSettings", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("TestOne", "This is first test");
-        editor.putString("TestTwo", "This is second test");
-        editor.commit();
+        boolean settingsInit = settings.getBoolean("initted", false);
+
+        if (!settingsInit) {
+            Debug.log("ALARM", "MainActivity/createDefaultSettings", "No settings found, creating default ones", 2);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString("TestOne", "This is test");
+            editor.putString("TestTwo", "This test");
+            editor.putBoolean("initted", true);
+            editor.commit();
+        }
+
     }
 
     /**
