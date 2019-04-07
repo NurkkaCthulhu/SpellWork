@@ -1,9 +1,11 @@
 package com.anumalm.spellwork;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.anumalm.spellwork.utilities.Debug;
 import com.anumalm.spellwork.utilities.Utils;
 
 /**
@@ -37,6 +39,28 @@ public class SettingsActivity extends AppCompatActivity {
         Utils.hideSystemUI(decorView);
     }
 
+
+    /**
+     * Called when alarm start or stop button is clicked.
+     *
+     * Sends the start or stop command to AlarmService.
+     *
+     * @param v                         The click source.
+     */
+    public void manageAlarm(View v) {
+        if (v.getId() == R.id.start) {
+            Utils.playButtonSound();
+            Debug.log("ALARM", "MainActivity/manageAlarm", "start button pressed", 2);
+            Intent i = new Intent(this, AlarmService.class);
+            startService(i);
+        } else if (v.getId() == R.id.stop) {
+            Utils.playButtonSound();
+            Debug.log("ALARM", "MainActivity/manageAlarm", "stop button pressed", 2);
+            Intent i = new Intent(this, AlarmService.class);
+            stopService(i);
+        }
+    }
+
     /**
      * Called when back button has been clicked.
      *
@@ -48,4 +72,6 @@ public class SettingsActivity extends AppCompatActivity {
         Utils.playButtonSound();
         finish();
     }
+
+
 }
