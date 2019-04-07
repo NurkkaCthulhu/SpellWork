@@ -1,6 +1,10 @@
 package com.anumalm.spellwork.utilities;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.View;
+
+import com.anumalm.spellwork.R;
 
 /**
  * Utils class holds useful methods that can be called from any other class.
@@ -10,6 +14,8 @@ import android.view.View;
  * @since       1.0
  */
 public final class Utils {
+
+    private static MediaPlayer buttonPlayer;
 
     /**
      * Private constructor so that Utils-object cannot be instantiated.
@@ -36,5 +42,13 @@ public final class Utils {
                         // Hide the nav bar and status bar
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    public static void createButtonPlayer(Context context) {
+        buttonPlayer = MediaPlayer.create(context, R.raw.button);
+    }
+
+    public static void playButtonSound() {
+        buttonPlayer.start();
     }
 }
