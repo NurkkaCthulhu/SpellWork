@@ -80,6 +80,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Called when settings button is clicked.
+     *
+     * Starts the SettingsActivity.
+     *
+     * @param v                         The click source.
+     */
+    public void settingsButton(View v) {
+        Intent i = new Intent(this, SettingsActivity.class);
+        startActivity(i);
+    }
+
+    /**
      * Called when alarm start or stop button is clicked.
      *
      * Sends the start or stop command to AlarmService.
@@ -87,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v                         The click source.
      */
     public void manageAlarm(View v) {
-        if (v.getId() == R.id.start) {
+       /* if (v.getId() == R.id.start) {
             Debug.log("ALARM", "MainActivity/manageAlarm", "start button pressed", 2);
             Intent i = new Intent(this, AlarmService.class);
             startService(i);
@@ -95,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             Debug.log("ALARM", "MainActivity/manageAlarm", "stop button pressed", 2);
             Intent i = new Intent(this, AlarmService.class);
             stopService(i);
-        }
+        }*/
 
     }
 }
