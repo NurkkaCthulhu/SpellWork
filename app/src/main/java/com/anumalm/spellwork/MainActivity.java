@@ -2,6 +2,7 @@ package com.anumalm.spellwork;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.anumalm.spellwork.utilities.Utils;
  */
 public class MainActivity extends AppCompatActivity {
 
+    private MediaPlayer buttonPlayer;
+
     /**
      * Overrides AppCompatActivity's onCreate-method.
      *
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        buttonPlayer = MediaPlayer.create(this, R.raw.button);
         getViewAndHideUI();
         createDefaultSettings();
     }
@@ -75,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v                         The click source.
      */
     public void workoutButton(View v) {
+        buttonPlayer.start();
         Intent i = new Intent(this, WorkoutActivity.class);
         startActivity(i);
     }
@@ -87,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v                         The click source.
      */
     public void settingsButton(View v) {
+        buttonPlayer.start();
         Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
     }
