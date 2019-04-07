@@ -95,23 +95,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    /**
-     * Called when alarm start or stop button is clicked.
-     *
-     * Sends the start or stop command to AlarmService.
-     *
-     * @param v                         The click source.
-     */
-    public void manageAlarm(View v) {
-       /* if (v.getId() == R.id.start) {
-            Debug.log("ALARM", "MainActivity/manageAlarm", "start button pressed", 2);
-            Intent i = new Intent(this, AlarmService.class);
-            startService(i);
-        } else if (v.getId() == R.id.stop) {
-            Debug.log("ALARM", "MainActivity/manageAlarm", "stop button pressed", 2);
-            Intent i = new Intent(this, AlarmService.class);
-            stopService(i);
-        }*/
-
-    }
 }
