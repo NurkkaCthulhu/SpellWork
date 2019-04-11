@@ -30,6 +30,7 @@
                 android:background="@drawable/bg_workoutselect">
 
                 <TextView
+                    android:id="@+id/topTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10:00"
@@ -38,6 +39,7 @@
                     android:textSize="17sp"/>
 
                 <TextView
+                    android:id="@+id/topCurrency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -46,7 +48,7 @@
                     android:textSize="17sp"/>
 
                 <ImageView
-                    android:id="@+id/workoutImg_top"
+                    android:id="@+id/topWorkoutImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -64,6 +66,7 @@
                 android:background="@drawable/bg_workoutselect">
 
                 <TextView
+                    android:id="@+id/middleTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10:00"
@@ -72,6 +75,7 @@
                     android:textSize="17sp"/>
 
                 <TextView
+                    android:id="@+id/middleCurrency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -80,7 +84,7 @@
                     android:textSize="17sp"/>
 
                 <ImageView
-                    android:id="@+id/workoutImg_middle"
+                    android:id="@+id/middleWorkoutImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -98,6 +102,7 @@
                 android:background="@drawable/bg_workoutselect">
 
                 <TextView
+                    android:id="@+id/bottomTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10:00"
@@ -106,6 +111,7 @@
                     android:textSize="17sp"/>
 
                 <TextView
+                    android:id="@+id/bottomCurrency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -114,7 +120,7 @@
                     android:textSize="17sp"/>
 
                 <ImageView
-                    android:id="@+id/workoutImg_bottom"
+                    android:id="@+id/bottomWorkoutImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
