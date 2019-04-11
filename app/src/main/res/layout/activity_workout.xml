@@ -38,6 +38,15 @@
                     android:layout_alignParentStart="true"
                     android:textSize="17sp"/>
 
+                <ImageView
+                    android:id="@+id/topCurrencyImg"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_toStartOf="@+id/topCurrency"
+                    android:src="@drawable/button_settings" />
+
                 <TextView
                     android:id="@+id/topCurrency"
                     android:layout_width="wrap_content"
@@ -74,6 +83,15 @@
                     android:layout_alignParentStart="true"
                     android:textSize="17sp"/>
 
+                <ImageView
+                    android:id="@+id/middleCurrencyImg"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_toStartOf="@+id/middleCurrency"
+                    android:src="@drawable/button_settings" />
+
                 <TextView
                     android:id="@+id/middleCurrency"
                     android:layout_width="wrap_content"
@@ -109,6 +127,15 @@
                     android:textColor="@color/colorPrimary"
                     android:layout_alignParentStart="true"
                     android:textSize="17sp"/>
+
+                <ImageView
+                    android:id="@+id/bottomCurrencyImg"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_toStartOf="@+id/bottomCurrency"
+                    android:src="@drawable/button_settings" />
 
                 <TextView
                     android:id="@+id/bottomCurrency"
