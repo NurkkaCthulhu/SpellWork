@@ -4,6 +4,8 @@ public class JumpingJacks implements Workout {
     private String name;
     private int amount;
     private boolean enabled;
+    private boolean completed;
+    private boolean newest;
     private int graphic;
 
     public JumpingJacks(int amount, String name, boolean enabled, int graphic) {
@@ -11,6 +13,8 @@ public class JumpingJacks implements Workout {
         this.name = name;
         this.enabled = enabled;
         this.graphic = graphic;
+        this.completed = false;
+        this.newest = true;
     }
 
     public int getAmount() {
@@ -43,5 +47,21 @@ public class JumpingJacks implements Workout {
 
     public void setGraphic(int graphic) {
         this.graphic = graphic;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public boolean isNewest() {
+        return newest;
+    }
+
+    public void setNewest(boolean newest) {
+        this.newest = newest;
     }
 }
