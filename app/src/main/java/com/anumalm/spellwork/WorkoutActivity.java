@@ -38,7 +38,7 @@ public class WorkoutActivity extends AppCompatActivity {
         t = findViewById(R.id.workoutText);
         getSettings();
 
-        Workout wo = new JumpingJacks(10, "Jumping jacks", true, R.drawable.button_back);
+        Workout wo = new JumpingJacks(10, "Jumping jacks", true);
         ImageView iw = findViewById(R.id.topWorkoutImg);
         iw.setImageResource(((JumpingJacks) wo).getGraphic());
 
