@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.anumalm.spellwork.utilities.Debug;
 import com.anumalm.spellwork.utilities.Utils;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Screen that shows the current workouts for the user.
  *
@@ -39,6 +42,12 @@ public class WorkoutActivity extends AppCompatActivity {
         getSettings();
 
         Workout wo = new JumpingJacks(10, "Jumping jacks", true);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        TextView top = findViewById(R.id.topTime);
+        LocalTime current = java.time.LocalTime.now();
+        String timeText = formatter.format(current);
+        top.setText(timeText);
         ImageView iw = findViewById(R.id.topWorkoutImg);
         iw.setImageResource(((JumpingJacks) wo).getGraphic());
 
