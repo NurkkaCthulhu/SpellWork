@@ -58,7 +58,7 @@
 
                 <ImageView
                     android:id="@+id/topWorkoutImg"
-                    android:layout_width="wrap_content"
+                    android:layout_width="210dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_centerHorizontal="true"
@@ -103,7 +103,7 @@
 
                 <ImageView
                     android:id="@+id/middleWorkoutImg"
-                    android:layout_width="wrap_content"
+                    android:layout_width="210dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_centerHorizontal="true"
@@ -148,7 +148,7 @@
 
                 <ImageView
                     android:id="@+id/bottomWorkoutImg"
-                    android:layout_width="wrap_content"
+                    android:layout_width="210dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_centerHorizontal="true"
