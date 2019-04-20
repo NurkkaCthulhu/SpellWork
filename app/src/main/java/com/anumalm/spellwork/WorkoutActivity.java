@@ -40,7 +40,7 @@ public class WorkoutActivity extends SpellworkActivity {
         t = findViewById(R.id.workoutText);
         getSettings();
 
-        Workout wo = new JumpingJacks(10, "Jumping jacks", true);
+        Workout wo = new JumpingJacks(10, true);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         TextView top = findViewById(R.id.topTime);
