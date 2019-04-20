@@ -2,16 +2,15 @@ package com.anumalm.spellwork;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.anumalm.spellwork.utilities.Debug;
 import com.anumalm.spellwork.utilities.MusicManager;
 import com.anumalm.spellwork.utilities.Utils;
+import com.anumalm.spellwork.workouts.Workout;
+import com.anumalm.spellwork.workouts.JumpingJacks;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
