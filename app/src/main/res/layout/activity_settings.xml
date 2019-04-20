@@ -8,8 +8,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="This is settings." />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp"
+        android:text="Settings" />
 
     <Button
         android:layout_width="45dp"
@@ -25,8 +27,8 @@
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="147dp"
-        android:layout_marginTop="103dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="108dp"
         android:onClick="manageAlarm"
         android:text="Start alarms" />
 
@@ -36,9 +38,66 @@
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="147dp"
-        android:layout_marginTop="178dp"
+        android:layout_marginStart="207dp"
+        android:layout_marginTop="108dp"
         android:onClick="manageAlarm"
         android:text="Stop alarms" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            android:layout_marginTop="200dp">
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/workoutBox_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_workoutselect"
+                android:padding="11dp">
+
+                <TextView
+                    android:id="@+id/bottomTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="10:00"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/bottomCurrencyImg"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_toStartOf="@+id/bottomCurrency"
+                    android:src="@drawable/currency" />
+
+                <TextView
+                    android:id="@+id/bottomCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="5"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/bottomWorkoutImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/button_settings" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
