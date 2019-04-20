@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Spellwork</string>
+    <string-array name="greetings">
+        <item>Are you ready to check your workouts, nyapprentice?</item>
+        <item>Meowdy.</item>
+        <item>The magic was in you all along, you just need to work it out! Meow.</item>
+        <item>You need a fit body to perform the best magic. Believe me, I\'m buff as heck.</item>
+    </string-array>
 </resources>
