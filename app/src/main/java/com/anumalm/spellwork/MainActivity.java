@@ -42,7 +42,16 @@ public class MainActivity extends SpellworkActivity {
         hoccuTexts = getResources().getStringArray(R.array.greetings);
         greeting = findViewById(R.id.hoccutext);
 
+        getNewGreeting();
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        getNewGreeting();
+    }
+
+    private void getNewGreeting() {
         int randomIndex = new Random().nextInt(hoccuTexts.length);
         String randomName = hoccuTexts[randomIndex];
         greeting.setText(randomName);
