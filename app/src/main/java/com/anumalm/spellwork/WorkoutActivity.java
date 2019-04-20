@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.anumalm.spellwork.utilities.Debug;
+import com.anumalm.spellwork.utilities.MusicManager;
 import com.anumalm.spellwork.utilities.Utils;
 
 import java.time.LocalTime;
@@ -22,8 +23,8 @@ import java.time.format.DateTimeFormatter;
  * @version     2019.03.24
  * @since       1.0
  */
-public class WorkoutActivity extends AppCompatActivity {
-    TextView t;
+public class WorkoutActivity extends SpellworkActivity {
+    private TextView t;
 
     /**
      * Overrides AppCompatActivity's onCreate-method.
@@ -36,7 +37,6 @@ public class WorkoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-        getViewAndHideUI();
 
         t = findViewById(R.id.workoutText);
         getSettings();
@@ -53,20 +53,6 @@ public class WorkoutActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Overrides AppCompatActivity's onWindowFocusChanged-method.
-     *
-     * Hides system UI if the app has focus.
-     *
-     * @param hasFocus                  Whether the window now has focus.
-     */
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            getViewAndHideUI();
-        }
-    }
 
     /**
      * Gets the settings from SharedPreferences and sets them to TextView.
@@ -82,14 +68,6 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     /**
-     * Gets the current view and hides the system UI with method from Utils.
-     */
-    private void getViewAndHideUI() {
-        View decorView = getWindow().getDecorView();
-        Utils.hideSystemUI(decorView);
-    }
-
-    /**
      * Called when back button has been clicked.
      *
      * Return the user to MainActivity (-> finishes this Activity).
@@ -98,6 +76,7 @@ public class WorkoutActivity extends AppCompatActivity {
      */
     public void backButton(View v) {
         Utils.playButtonSound();
+        MusicManager.setPause(false);
         finish();
     }
 }

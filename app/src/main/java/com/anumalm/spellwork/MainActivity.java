@@ -38,43 +38,14 @@ public class MainActivity extends SpellworkActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Utils.createButtonPlayer(this);
-        getViewAndHideUI();
         createDefaultSettings();
         hoccuTexts = getResources().getStringArray(R.array.greetings);
         greeting = findViewById(R.id.hoccutext);
 
-        // Create music player
-        MusicManager.createMusicPlayer(this);
 
         int randomIndex = new Random().nextInt(hoccuTexts.length);
         String randomName = hoccuTexts[randomIndex];
         greeting.setText(randomName);
-    }
-
-    /**
-     * Overrides AppCompatActivity's onWindowFocusChanged-method.
-     *
-     * Hides system UI if the app has focus.
-     *
-     * @param hasFocus                  Whether the window now has focus.
-     */
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            MusicManager.playMusic();
-            getViewAndHideUI();
-        } else {
-            MusicManager.pauseMusic();
-        }
-    }
-
-    /**
-     * Gets the current view and hides the system UI with method from Utils.
-     */
-    private void getViewAndHideUI() {
-        View decorView = getWindow().getDecorView();
-        Utils.hideSystemUI(decorView);
     }
 
     /**
@@ -104,6 +75,7 @@ public class MainActivity extends SpellworkActivity {
      */
     public void workoutButton(View v) {
         Utils.playButtonSound();
+        MusicManager.setPause(false);
         Intent i = new Intent(this, WorkoutActivity.class);
         startActivity(i);
     }
@@ -117,6 +89,7 @@ public class MainActivity extends SpellworkActivity {
      */
     public void settingsButton(View v) {
         Utils.playButtonSound();
+        MusicManager.setPause(false);
         Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
     }

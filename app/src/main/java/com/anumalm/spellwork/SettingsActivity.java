@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.anumalm.spellwork.utilities.Debug;
+import com.anumalm.spellwork.utilities.MusicManager;
 import com.anumalm.spellwork.utilities.Utils;
 
 /**
@@ -15,7 +16,7 @@ import com.anumalm.spellwork.utilities.Utils;
  * @version     2019.04.07
  * @since       1.0
  */
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends SpellworkActivity {
 
     /**
      * Overrides AppCompatActivity's onCreate-method.
@@ -28,17 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        getViewAndHideUI();
     }
-
-    /**
-     * Gets the current view and hides the system UI with method from Utils.
-     */
-    private void getViewAndHideUI() {
-        View decorView = getWindow().getDecorView();
-        Utils.hideSystemUI(decorView);
-    }
-
 
     /**
      * Called when alarm start or stop button is clicked.
@@ -70,6 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
      */
     public void backButton(View v) {
         Utils.playButtonSound();
+        MusicManager.setPause(false);
         finish();
     }
 
