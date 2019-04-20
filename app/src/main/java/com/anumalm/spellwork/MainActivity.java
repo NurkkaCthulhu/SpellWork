@@ -6,9 +6,12 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.anumalm.spellwork.utilities.Debug;
 import com.anumalm.spellwork.utilities.Utils;
+
+import java.util.Random;
 
 /**
  * Main Activity of the app.
@@ -18,6 +21,9 @@ import com.anumalm.spellwork.utilities.Utils;
  * @since       1.0
  */
 public class MainActivity extends AppCompatActivity {
+
+    private String[] hoccuTexts;
+    private TextView greeting;
 
     /**
      * Overrides AppCompatActivity's onCreate-method.
@@ -33,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
         Utils.createButtonPlayer(this);
         getViewAndHideUI();
         createDefaultSettings();
+        hoccuTexts = getResources().getStringArray(R.array.greetings);
+        greeting = findViewById(R.id.hoccutext);
+
+        int randomIndex = new Random().nextInt(hoccuTexts.length);
+        String randomName = hoccuTexts[randomIndex];
+        greeting.setText(randomName);
     }
 
     /**
