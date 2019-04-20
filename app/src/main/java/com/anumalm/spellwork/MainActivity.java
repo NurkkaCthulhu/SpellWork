@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.anumalm.spellwork.utilities.Debug;
+import com.anumalm.spellwork.utilities.MusicManager;
 import com.anumalm.spellwork.utilities.Utils;
 
 import java.util.Random;
@@ -20,7 +21,7 @@ import java.util.Random;
  * @version     2019.04.07
  * @since       1.0
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends SpellworkActivity {
 
     private String[] hoccuTexts;
     private TextView greeting;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         hoccuTexts = getResources().getStringArray(R.array.greetings);
         greeting = findViewById(R.id.hoccutext);
 
+        // Create music player
+        MusicManager.createMusicPlayer(this);
+
         int randomIndex = new Random().nextInt(hoccuTexts.length);
         String randomName = hoccuTexts[randomIndex];
         greeting.setText(randomName);
@@ -58,7 +62,10 @@ public class MainActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
+            MusicManager.playMusic();
             getViewAndHideUI();
+        } else {
+            MusicManager.pauseMusic();
         }
     }
 
