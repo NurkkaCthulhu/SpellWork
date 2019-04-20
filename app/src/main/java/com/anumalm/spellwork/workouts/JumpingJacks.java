@@ -1,4 +1,6 @@
-package com.anumalm.spellwork;
+package com.anumalm.spellwork.workouts;
+
+import com.anumalm.spellwork.R;
 
 public class JumpingJacks implements Workout {
     private String name;
