@@ -10,9 +10,9 @@ public class JumpingJacks implements Workout {
     private boolean newest;
     private int graphic;
 
-    public JumpingJacks(int amount, String name, boolean enabled) {
+    public JumpingJacks(int amount, boolean enabled) {
         this.amount = amount;
-        this.name = name;
+        this.name = "Jumping Jacks";
         this.enabled = enabled;
         this.graphic = R.drawable.jumpingjacks;
         this.completed = false;
