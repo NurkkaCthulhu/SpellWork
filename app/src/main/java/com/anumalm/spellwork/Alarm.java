@@ -1,22 +1,17 @@
 package com.anumalm.spellwork;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioAttributes;
+import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
-
 import com.anumalm.spellwork.utilities.Debug;
-
 
 /**
  * Alarm sends the notifications every x minutes to the device.
@@ -27,6 +22,7 @@ import com.anumalm.spellwork.utilities.Debug;
  */
 public class Alarm extends BroadcastReceiver {
 
+    private int minutes;
     /**
      * Overrides BroadcastReceiver's onReceive-method.
      *
@@ -38,11 +34,12 @@ public class Alarm extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, ":mywakelocktag");
+        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, ":swwakelocktag");
         wl.acquire(1000);
 
         Debug.log("ALARM", "Alarm/onReceive", "Time to send notification!", 1);
 
+        getMinutes(context);
         showNotification(context, intent);
 
         wl.release();
@@ -59,7 +56,12 @@ public class Alarm extends BroadcastReceiver {
         AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, Alarm.class);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 60 * 30, pi); // Millisec * Second * Minute
+        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 60 * minutes, pi); // Millisec * Second * Minute
+    }
+
+    private void getMinutes(Context context) {
+        SharedPreferences settings = context.getSharedPreferences("UserSettings", 0);
+        minutes = settings.getInt("workouttimer", 30);
     }
 
     /**
@@ -93,11 +95,10 @@ public class Alarm extends BroadcastReceiver {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context, channelId)
                         .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("New workout!")
-                        .setContentText("Time to get up u lazy lad");
+                        .setContentTitle("SpellWork")
+                        .setContentText("Time to get up nyapprentice!");
 
         mBuilder.setContentIntent(contentIntent);
-
 
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
