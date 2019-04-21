@@ -69,6 +69,7 @@ public class MainActivity extends SpellworkActivity {
             SharedPreferences.Editor editor = settings.edit();
             editor.putString("TestOne", "This is test");
             editor.putString("TestTwo", "This test");
+            editor.putInt("workouttimer", 30);
             editor.putBoolean("initted", true);
             editor.commit();
         }
