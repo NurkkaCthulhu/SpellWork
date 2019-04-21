@@ -20,9 +20,6 @@ import com.anumalm.spellwork.utilities.Utils;
  */
 public class SettingsActivity extends SpellworkActivity {
 
-    private TextView currentTimerText;
-    private SharedPreferences settings;
-
     /**
      * Overrides AppCompatActivity's onCreate-method.
      *
@@ -34,11 +31,6 @@ public class SettingsActivity extends SpellworkActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
-        settings = getSharedPreferences("UserSettings", 0);
-
-        currentTimerText = findViewById(R.id.currentTimerText);
-        currentTimerText.setText("Current timer: " + settings.getInt("workouttimer", 30) + "min");
     }
 
     /**
@@ -73,28 +65,6 @@ public class SettingsActivity extends SpellworkActivity {
         Utils.playButtonSound();
         MusicManager.setPause(false);
         finish();
-    }
-
-    public void setAlarmTimer(View v) {
-        SharedPreferences.Editor editor = settings.edit();
-
-        switch(v.getId()) {
-            case R.id.button20min:
-                editor.putInt("workouttimer", 20);
-                currentTimerText.setText("Current timer: 20min");
-                break;
-            case R.id.button25min:
-                editor.putInt("workouttimer", 25);
-                currentTimerText.setText("Current timer: 25min");
-                break;
-            case R.id.button30min:
-                editor.putInt("workouttimer", 30);
-                currentTimerText.setText("Current timer: 30min");
-                break;
-            default:
-                break;
-        }
-        editor.commit();
     }
 
 }
