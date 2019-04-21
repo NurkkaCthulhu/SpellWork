@@ -23,7 +23,6 @@ import java.time.format.DateTimeFormatter;
  * @since       1.0
  */
 public class WorkoutActivity extends SpellworkActivity {
-    private TextView t;
 
     /**
      * Overrides AppCompatActivity's onCreate-method.
@@ -37,9 +36,6 @@ public class WorkoutActivity extends SpellworkActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
 
-        t = findViewById(R.id.workoutText);
-        getSettings();
-
         Workout wo = new JumpingJacks(10, true);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -52,19 +48,6 @@ public class WorkoutActivity extends SpellworkActivity {
 
     }
 
-
-    /**
-     * Gets the settings from SharedPreferences and sets them to TextView.
-     *
-     * Currently only has code to test that it works.
-     */
-    private void getSettings() {
-        SharedPreferences settings = getSharedPreferences("UserSettings", 0);
-        Debug.log("ALARM", "MainActivity/createDefaultSettings", "All possible settings: " + settings.getAll(), 1);
-        String putThisToText = settings.getString("TestOne", "");
-        putThisToText += settings.getString("TestTwo", "");
-        t.setText(putThisToText);
-    }
 
     /**
      * Called when back button has been clicked.
