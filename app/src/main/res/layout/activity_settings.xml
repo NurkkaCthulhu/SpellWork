@@ -43,61 +43,109 @@
         android:onClick="manageAlarm"
         android:text="Stop alarms" />
 
-    <ScrollView
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="200dp"
+        android:text="Set alarm frequency:"
+        android:textStyle="bold"
+        android:background="#888888"/>
+
+    <TextView
+        android:id="@+id/currentTimerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="218dp"
+        android:background="#888888"
+        android:text="currently"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button20min"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="187dp"
+        android:onClick="setAlarmTimer"
+        android:background="#999999"
+        android:text="20min" />
+
+    <Button
+        android:id="@+id/button25min"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="187dp"
+        android:background="#999999"
+        android:onClick="setAlarmTimer"
+        android:text="25min" />
+
+    <Button
+        android:id="@+id/button30min"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="187dp"
+        android:background="#999999"
+        android:onClick="setAlarmTimer"
+        android:text="30min" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/workoutBox_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/bg_workoutselect"
+        android:padding="11dp">
+
+        <TextView
+            android:id="@+id/bottomTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:scrollbars="vertical"
-            android:layout_marginTop="200dp">
+            android:layout_alignParentStart="true"
+            android:text="10:00"
+            android:textColor="@color/colorPrimary"
+            android:textSize="17sp" />
 
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/workoutBox_bottom"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/bg_workoutselect"
-                android:padding="11dp">
+        <ImageView
+            android:id="@+id/bottomCurrencyImg"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="7dp"
+            android:layout_toStartOf="@+id/bottomCurrency"
+            android:src="@drawable/currency" />
 
-                <TextView
-                    android:id="@+id/bottomTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="10:00"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17sp" />
+        <TextView
+            android:id="@+id/bottomCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="5"
+            android:textColor="@color/colorPrimary"
+            android:textSize="17sp" />
 
-                <ImageView
-                    android:id="@+id/bottomCurrencyImg"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="7dp"
-                    android:layout_toStartOf="@+id/bottomCurrency"
-                    android:src="@drawable/currency" />
+        <ImageView
+            android:id="@+id/bottomWorkoutImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/button_settings" />
 
-                <TextView
-                    android:id="@+id/bottomCurrency"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="5"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17sp" />
+    </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/bottomWorkoutImg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="4dp"
-                    android:src="@drawable/button_settings" />
-
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
 
 </RelativeLayout>
