@@ -2,10 +2,14 @@ package com.anumalm.spellwork;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anumalm.spellwork.utilities.Debug;
 import com.anumalm.spellwork.utilities.MusicManager;
@@ -64,6 +68,28 @@ public class WorkoutActivity extends SpellworkActivity {
         currentCurrency += 5;
         editor.putInt("currency", currentCurrency);
         editor.apply();
+        showCustomToast();
+    }
+
+    /**
+     * Shows a custom toast when user has clicked a workout.
+     */
+    private void showCustomToast() {
+        LayoutInflater inflater = getLayoutInflater();
+
+        View layout = inflater.inflate(R.layout.spellwork_toast, findViewById(R.id.spellwork_toast));
+
+        ImageView image = layout.findViewById(R.id.image);
+        image.setImageResource(R.drawable.currency);
+
+        TextView text = layout.findViewById(R.id.text);
+        text.setText("Well done! You gained 5 currency.");
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 
     /**
