@@ -23,6 +23,8 @@ public class MainActivity extends SpellworkActivity {
 
     private String[] hoccuTexts;
     private TextView greeting;
+    private TextView playerCurrency;
+    private SharedPreferences settings;
 
     /**
      * Overrides AppCompatActivity's onCreate-method.
@@ -36,11 +38,14 @@ public class MainActivity extends SpellworkActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Utils.createButtonPlayer(this);
-        createDefaultSettings();
         hoccuTexts = getResources().getStringArray(R.array.greetings);
         greeting = findViewById(R.id.hoccutext);
+        playerCurrency = findViewById(R.id.playerCurrencyText);
+        settings = getSharedPreferences("UserSettings", 0);
 
         getNewGreeting();
+        updateCurrency();
+        createDefaultSettings();
     }
 
     /**
@@ -52,6 +57,7 @@ public class MainActivity extends SpellworkActivity {
     public void onStart() {
         super.onStart();
         getNewGreeting();
+        updateCurrency();
     }
 
     /**
@@ -64,10 +70,17 @@ public class MainActivity extends SpellworkActivity {
     }
 
     /**
+     * Updates the current currency user has to TextView.
+     */
+    private void updateCurrency() {
+        int currency = settings.getInt("currency", -1);
+        playerCurrency.setText("" + currency);
+    }
+
+    /**
      * Creates some default settings for the app.
      */
     private void createDefaultSettings() {
-        SharedPreferences settings = getSharedPreferences("UserSettings", 0);
         boolean settingsInit = settings.getBoolean("initted", false);
         Debug.log("ALARM", "MainActivity/createDefaultSettings", "All settings: " + settings.getAll(), 1);
 
@@ -75,6 +88,7 @@ public class MainActivity extends SpellworkActivity {
             Debug.log("ALARM", "MainActivity/createDefaultSettings", "No settings found, creating default ones", 2);
             SharedPreferences.Editor editor = settings.edit();
             editor.putBoolean("alarmOn", false);
+            editor.putInt("currency", 0);
             editor.putBoolean("initted", true);
             editor.commit();
         }
