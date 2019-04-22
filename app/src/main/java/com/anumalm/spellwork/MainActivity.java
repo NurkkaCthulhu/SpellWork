@@ -76,7 +76,7 @@ public class MainActivity extends SpellworkActivity {
             SharedPreferences.Editor editor = settings.edit();
             editor.putBoolean("alarmOn", false);
             editor.putBoolean("initted", true);
-            editor.apply();
+            editor.commit();
         }
 
     }
