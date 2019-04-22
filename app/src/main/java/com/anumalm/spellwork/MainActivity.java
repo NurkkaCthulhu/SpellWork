@@ -87,7 +87,7 @@ public class MainActivity extends SpellworkActivity {
         boolean settingsInit = settings.getBoolean("initted", false);
         Debug.log("ALARM", "MainActivity/createDefaultSettings", "All settings: " + settings.getAll(), 1);
 
-        if (settingsInit) {
+        if (!settingsInit) {
             letterImg.setVisibility(View.VISIBLE);
             greeting.setVisibility(View.INVISIBLE);
             Debug.log("ALARM", "MainActivity/createDefaultSettings", "No settings found, creating default ones", 2);
@@ -98,7 +98,6 @@ public class MainActivity extends SpellworkActivity {
             editor.putBoolean("initted", true);
             editor.apply();
         }
-
     }
 
     /**
