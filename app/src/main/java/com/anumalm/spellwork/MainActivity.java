@@ -2,8 +2,6 @@ package com.anumalm.spellwork;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -45,12 +43,20 @@ public class MainActivity extends SpellworkActivity {
         getNewGreeting();
     }
 
+    /**
+     * onStart method from AppCompatApplication.
+     *
+     * Gives user a new greeting every time used comes to the MainActivity screen.
+     */
     @Override
     public void onStart() {
         super.onStart();
         getNewGreeting();
     }
 
+    /**
+     * Method for getting a random greeting from strings-resource array.
+     */
     private void getNewGreeting() {
         int randomIndex = new Random().nextInt(hoccuTexts.length);
         String randomName = hoccuTexts[randomIndex];
@@ -63,13 +69,14 @@ public class MainActivity extends SpellworkActivity {
     private void createDefaultSettings() {
         SharedPreferences settings = getSharedPreferences("UserSettings", 0);
         boolean settingsInit = settings.getBoolean("initted", false);
+        Debug.log("ALARM", "MainActivity/createDefaultSettings", "All settings: " + settings.getAll(), 1);
 
         if (!settingsInit) {
             Debug.log("ALARM", "MainActivity/createDefaultSettings", "No settings found, creating default ones", 2);
             SharedPreferences.Editor editor = settings.edit();
             editor.putBoolean("alarmOn", false);
             editor.putBoolean("initted", true);
-            editor.commit();
+            editor.apply();
         }
 
     }
