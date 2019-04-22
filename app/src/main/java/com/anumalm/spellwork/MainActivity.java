@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anumalm.spellwork.utilities.Debug;
@@ -25,6 +26,7 @@ public class MainActivity extends SpellworkActivity {
     private TextView greeting;
     private TextView playerCurrency;
     private SharedPreferences settings;
+    private ImageView letterImg;
 
     /**
      * Overrides AppCompatActivity's onCreate-method.
@@ -41,6 +43,7 @@ public class MainActivity extends SpellworkActivity {
         hoccuTexts = getResources().getStringArray(R.array.greetings);
         greeting = findViewById(R.id.hoccutext);
         playerCurrency = findViewById(R.id.playerCurrencyText);
+        letterImg = findViewById(R.id.letterImg);
         settings = getSharedPreferences("UserSettings", 0);
 
         getNewGreeting();
@@ -84,7 +87,9 @@ public class MainActivity extends SpellworkActivity {
         boolean settingsInit = settings.getBoolean("initted", false);
         Debug.log("ALARM", "MainActivity/createDefaultSettings", "All settings: " + settings.getAll(), 1);
 
-        if (!settingsInit) {
+        if (settingsInit) {
+            letterImg.setVisibility(View.VISIBLE);
+            greeting.setVisibility(View.INVISIBLE);
             Debug.log("ALARM", "MainActivity/createDefaultSettings", "No settings found, creating default ones", 2);
             SharedPreferences.Editor editor = settings.edit();
             editor.putBoolean("alarmOn", false);
@@ -122,6 +127,17 @@ public class MainActivity extends SpellworkActivity {
         MusicManager.setPause(false);
         Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
+    }
+
+    public void letterButton(View v) {
+        Utils.playButtonSound();
+        if(letterImg.getVisibility() == View.INVISIBLE) {
+            letterImg.setVisibility(View.VISIBLE);
+            greeting.setVisibility(View.INVISIBLE);
+        } else {
+            letterImg.setVisibility(View.INVISIBLE);
+            greeting.setVisibility(View.VISIBLE);
+        }
     }
 
 }
