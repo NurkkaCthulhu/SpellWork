@@ -3,7 +3,6 @@ package com.anumalm.spellwork;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,6 +10,11 @@ import android.widget.TextView;
 import com.anumalm.spellwork.utilities.Debug;
 import com.anumalm.spellwork.utilities.MusicManager;
 import com.anumalm.spellwork.utilities.Utils;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Use to get custom app settings from the user.
@@ -24,6 +28,7 @@ public class SettingsActivity extends SpellworkActivity {
     private Button startButton;
     private Button stopButton;
     private SharedPreferences settings;
+    private TextView alarmStartText;
 
     /**
      * Overrides AppCompatActivity's onCreate-method.
@@ -38,8 +43,10 @@ public class SettingsActivity extends SpellworkActivity {
         setContentView(R.layout.activity_settings);
         startButton = findViewById(R.id.start);
         stopButton = findViewById(R.id.stop);
+        alarmStartText = findViewById(R.id.alarmTimeText);
 
         settings = getSharedPreferences("UserSettings", 0);
+        alarmStartText.setText("" + settings.getString("time", "00:00"));
 
         Debug.log("ALARM", "Settings/onCreate", "is alarmOn?" + settings.getAll(), 1);
 
@@ -60,13 +67,20 @@ public class SettingsActivity extends SpellworkActivity {
      * @param v                         The click source.
      */
     public void manageAlarm(View v) {
+        Date currentTime = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+
+
         SharedPreferences.Editor editor = settings.edit();
         if (v.getId() == R.id.start) {
             Utils.playButtonSound();
             startButton.setEnabled(false);
             stopButton.setEnabled(true);
+            String time = "Alarm started at " + dateFormat.format(currentTime);
             editor.putBoolean("alarmOn", true);
+            editor.putString("time", time);
             editor.apply();
+            alarmStartText.setText("" + settings.getString("time", "00:00"));
             Debug.log("ALARM", "MainActivity/manageAlarm", "start button pressed", 2);
             Intent i = new Intent(this, AlarmService.class);
             startService(i);
@@ -74,8 +88,11 @@ public class SettingsActivity extends SpellworkActivity {
             Utils.playButtonSound();
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
+            String time = "Alarm stopped at " + dateFormat.format(currentTime);
             editor.putBoolean("alarmOn", false);
+            editor.putString("time", time);
             editor.apply();
+            alarmStartText.setText("" + settings.getString("time", "00:00"));
             Debug.log("ALARM", "MainActivity/manageAlarm", "stop button pressed", 2);
             Intent i = new Intent(this, AlarmService.class);
             stopService(i);
