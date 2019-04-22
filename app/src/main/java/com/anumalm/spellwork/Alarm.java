@@ -22,8 +22,7 @@ import com.anumalm.spellwork.utilities.Debug;
  */
 public class Alarm extends BroadcastReceiver {
 
-
-    private int timerMinutes = 1;
+    private int timerMinutes = 20;
     /**
      * Overrides BroadcastReceiver's onReceive-method.
      *
