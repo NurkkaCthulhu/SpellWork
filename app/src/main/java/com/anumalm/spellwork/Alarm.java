@@ -23,7 +23,7 @@ import com.anumalm.spellwork.utilities.Debug;
  */
 public class Alarm extends BroadcastReceiver {
 
-    private int timerMinutes = 20;
+    private int timerMinutes = 1;
     /**
      * Overrides BroadcastReceiver's onReceive-method.
      *
@@ -41,8 +41,23 @@ public class Alarm extends BroadcastReceiver {
         Debug.log("ALARM", "Alarm/onReceive", "Time to send notification!", 1);
 
         showNotification(context);
+        allowUserToWorkout(context);
 
         wl.release();
+    }
+
+    /**
+     * Allows user to check a workout done after notification has been sent.
+     *
+     * @param context           The Context that we get SharedPreferences from.
+     */
+    private void allowUserToWorkout(Context context) {
+        SharedPreferences settings = context.getSharedPreferences("UserSettings", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("allowWorkout", true);
+        editor.commit();
+
+        Debug.log("ALARM", "Alarm/allowUserToWorkout", "ettyiings: " + settings.getAll(), 1);
     }
 
     /**
@@ -101,6 +116,7 @@ public class Alarm extends BroadcastReceiver {
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
+        // Add notificationChannel if Android version is Oreo or newer.
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel mChannel = new NotificationChannel(
                     channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
