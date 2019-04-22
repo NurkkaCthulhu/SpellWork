@@ -25,8 +25,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class WorkoutActivity extends SpellworkActivity {
 
-    private SharedPreferences settings;
-
     /**
      * Overrides AppCompatActivity's onCreate-method.
      *
@@ -38,8 +36,6 @@ public class WorkoutActivity extends SpellworkActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-
-        settings = getSharedPreferences("UserSettings", 0);
 
         RelativeLayout top = findViewById(R.id.workoutBox_top);
         RelativeLayout middle = findViewById(R.id.workoutBox_middle);
@@ -60,12 +56,21 @@ public class WorkoutActivity extends SpellworkActivity {
 
     }
 
+    /**
+     * Increase player's currency and save it to settings.
+     */
     private void increaseCurrency() {
-        SharedPreferences.Editor editor = settings.edit();
-        int currentCurrency = settings.getInt("currency", -1);
-        currentCurrency += 5;
-        editor.putInt("currency", currentCurrency);
-        editor.commit();
+        SharedPreferences settings = getApplicationContext().getSharedPreferences("UserSettings", 0);
+        boolean allowWorkout = settings.getBoolean("allowWorkout", false);
+        Debug.log("WORKOUT", "WorkoutActivity/increaseCurrency", "allowWorkout? " + settings.getAll(), 1);
+        if(allowWorkout) {
+            SharedPreferences.Editor editor = settings.edit();
+            int currentCurrency = settings.getInt("currency", -1);
+            currentCurrency += 5;
+            editor.putInt("currency", currentCurrency);
+            editor.putBoolean("allowWorkout", false);
+            editor.apply();
+        }
     }
 
     /**
