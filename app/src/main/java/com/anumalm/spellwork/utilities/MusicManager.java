@@ -6,6 +6,10 @@ import com.anumalm.spellwork.R;
 
 /**
  * MusicManager plays the background music in the app.
+ *
+ * @author      Anu Malm     anu.malm@tuni.fi
+ * @version     2019.04.22
+ * @since       3.0
  */
 public class MusicManager {
     private static boolean currentlyPlaying = false;

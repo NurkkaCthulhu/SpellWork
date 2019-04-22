@@ -13,7 +13,7 @@ import com.anumalm.spellwork.utilities.Debug;
  * Alarms must be started once first from MainActivity via button.
  *
  * @author      Anu Malm     anu.malm@tuni.fi
- * @version     2019.04.07
+ * @version     2019.04.22
  * @since       1.0
  */
 public class AlarmService extends Service {
