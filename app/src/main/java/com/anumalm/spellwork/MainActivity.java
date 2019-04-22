@@ -91,7 +91,7 @@ public class MainActivity extends SpellworkActivity {
             editor.putInt("currency", 0);
             editor.putBoolean("allowWorkout", false);
             editor.putBoolean("initted", true);
-            editor.commit();
+            editor.apply();
         }
 
     }

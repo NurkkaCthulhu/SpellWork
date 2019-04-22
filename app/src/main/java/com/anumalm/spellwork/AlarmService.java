@@ -47,7 +47,7 @@ public class AlarmService extends Service {
         if (!alarmStarted) {
             SharedPreferences.Editor editor = settings.edit();
             editor.putBoolean("alarmOn", true);
-            editor.commit();
+            editor.apply();
             Debug.log("ALARM", "AlarmService/onStart", "All settings: " + settings.getAll(), 1);
             alarmStarted = true;
             alarm.setAlarm(this);
@@ -73,7 +73,7 @@ public class AlarmService extends Service {
 
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean("alarmOn", false);
-        editor.commit();
+        editor.apply();
         alarm.cancelAlarm(this);
 
     }

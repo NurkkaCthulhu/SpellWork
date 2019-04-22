@@ -66,7 +66,7 @@ public class SettingsActivity extends SpellworkActivity {
             startButton.setEnabled(false);
             stopButton.setEnabled(true);
             editor.putBoolean("alarmOn", true);
-            editor.commit();
+            editor.apply();
             Debug.log("ALARM", "MainActivity/manageAlarm", "start button pressed", 2);
             Intent i = new Intent(this, AlarmService.class);
             startService(i);
@@ -75,7 +75,7 @@ public class SettingsActivity extends SpellworkActivity {
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
             editor.putBoolean("alarmOn", false);
-            editor.commit();
+            editor.apply();
             Debug.log("ALARM", "MainActivity/manageAlarm", "stop button pressed", 2);
             Intent i = new Intent(this, AlarmService.class);
             stopService(i);

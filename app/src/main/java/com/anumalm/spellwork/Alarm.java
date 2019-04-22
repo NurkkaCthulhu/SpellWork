@@ -55,9 +55,8 @@ public class Alarm extends BroadcastReceiver {
         SharedPreferences settings = context.getSharedPreferences("UserSettings", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean("allowWorkout", true);
-        editor.commit();
-
-        Debug.log("ALARM", "Alarm/allowUserToWorkout", "ettyiings: " + settings.getAll(), 1);
+        editor.apply();
+        Debug.log("WORKOUT", "Alarm/allowUserToWorkout", "alls ettinfdi" + settings.getAll(), 1);
     }
 
     /**
@@ -67,7 +66,6 @@ public class Alarm extends BroadcastReceiver {
      */
     public void setAlarm(Context context) {
         Debug.log("ALARM", "Alarm/setAlarm", "Setting alarm...", 1);
-        SharedPreferences settings = context.getSharedPreferences("UserSettings", 0);
 
         AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, Alarm.class);
