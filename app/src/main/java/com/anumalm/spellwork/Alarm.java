@@ -106,7 +106,7 @@ public class Alarm extends BroadcastReceiver {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context, channelId)
                         .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("SpellWork")
+                        .setContentTitle("Hoccu calls")
                         .setContentText("Time to get up nyapprentice!");
 
         mBuilder.setContentIntent(contentIntent);
