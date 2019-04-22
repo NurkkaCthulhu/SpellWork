@@ -89,6 +89,7 @@ public class MainActivity extends SpellworkActivity {
             SharedPreferences.Editor editor = settings.edit();
             editor.putBoolean("alarmOn", false);
             editor.putInt("currency", 0);
+            editor.putBoolean("allowWorkout", false);
             editor.putBoolean("initted", true);
             editor.commit();
         }
