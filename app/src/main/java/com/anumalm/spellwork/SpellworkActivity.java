@@ -79,7 +79,7 @@ public abstract class SpellworkActivity extends AppCompatActivity {
     /**
      * Called when activity is resumed.
      *
-     * Calls MusicMAnager's playMusic-method so music starts to play again.
+     * Calls MusicManager's playMusic-method so music starts to play again.
      */
     @Override
     public void onResume() {

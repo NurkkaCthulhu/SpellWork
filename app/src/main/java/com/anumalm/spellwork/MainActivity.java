@@ -17,7 +17,7 @@ import java.util.Random;
  * Main Activity of the app.
  *
  * @author      Anu Malm     anu.malm@tuni.fi
- * @version     2019.04.07
+ * @version     2019.04.22
  * @since       1.0
  */
 public class MainActivity extends SpellworkActivity {
@@ -128,6 +128,13 @@ public class MainActivity extends SpellworkActivity {
         startActivity(i);
     }
 
+    /**
+     * Called when letter button is clicked.
+     *
+     * Hides or shows the info letter. Also hides greeting text box.
+     *
+     * @param v                     The click source.
+     */
     public void letterButton(View v) {
         Utils.playButtonSound();
         if(letterImg.getVisibility() == View.INVISIBLE) {

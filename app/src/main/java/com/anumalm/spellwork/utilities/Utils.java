@@ -10,7 +10,7 @@ import com.anumalm.spellwork.R;
  * Utils class holds useful methods that can be called from any other class.
  *
  * @author      Anu Malm     anu.malm@tuni.fi
- * @version     2019.03.24
+ * @version     2019.04.22
  * @since       1.0
  */
 public final class Utils {
@@ -44,10 +44,18 @@ public final class Utils {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
+    /**
+     * Creates the MediaPlayer for playing button sounds.
+     *
+     * @param context           Context from Activity that calls this method.
+     */
     public static void createButtonPlayer(Context context) {
         buttonPlayer = MediaPlayer.create(context, R.raw.button);
     }
 
+    /**
+     * Plays the button sound when called.
+     */
     public static void playButtonSound() {
         buttonPlayer.start();
     }

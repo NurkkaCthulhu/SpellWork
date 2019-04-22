@@ -55,6 +55,9 @@ public class MusicManager {
         }
     }
 
+    /**
+     * Destroys the music player when called.
+     */
     public static void destroyMusicPlayer() {
         //Debug.log("MUSIC", "MusicManager/destroy", "music player destroy method", 1);
         if(musicPlayer != null) {

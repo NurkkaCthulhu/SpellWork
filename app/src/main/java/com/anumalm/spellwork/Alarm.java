@@ -18,7 +18,7 @@ import com.anumalm.spellwork.utilities.Debug;
  * Alarm sends the notifications every x minutes to the device.
  *
  * @author      Anu Malm     anu.malm@tuni.fi
- * @version     2019.04.07
+ * @version     2019.04.22
  * @since       1.0
  */
 public class Alarm extends BroadcastReceiver {

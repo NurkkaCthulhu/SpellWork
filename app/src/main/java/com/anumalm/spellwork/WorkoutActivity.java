@@ -19,7 +19,7 @@ import com.anumalm.spellwork.utilities.Utils;
  * Screen that shows the current workouts for the user.
  *
  * @author      Anu Malm     anu.malm@tuni.fi
- * @version     2019.03.24
+ * @version     2019.04.22
  * @since       1.0
  */
 public class WorkoutActivity extends SpellworkActivity {

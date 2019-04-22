@@ -67,6 +67,11 @@ public class AlarmService extends Service {
         return null;
     }
 
+    /**
+     * Method from super class that's called when Service is destroyed.
+     *
+     * Calls Alarm's cancelAlarm-method so alarms are stopped.
+     */
     @Override
     public void onDestroy() {
         Debug.log("ALARM", "AlarmService/onCreate", "Service was stopped", 1);
