@@ -14,6 +14,16 @@
         android:background="#888888"
         android:text="Alarms are set to come every ~20min." />
 
+    <TextView
+        android:id="@+id/alarmTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="231dp"
+        android:background="#888888"
+        android:text="Click Start to start alarms." />
+
     <Button
         android:layout_width="45dp"
         android:layout_height="45dp"
