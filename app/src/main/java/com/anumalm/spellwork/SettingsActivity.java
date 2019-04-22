@@ -16,7 +16,7 @@ import com.anumalm.spellwork.utilities.Utils;
  * Use to get custom app settings from the user.
  *
  * @author      Anu Malm     anu.malm@tuni.fi
- * @version     2019.04.07
+ * @version     2019.04.22
  * @since       1.0
  */
 public class SettingsActivity extends SpellworkActivity {
@@ -40,6 +40,8 @@ public class SettingsActivity extends SpellworkActivity {
         stopButton = findViewById(R.id.stop);
 
         settings = getSharedPreferences("UserSettings", 0);
+
+        Debug.log("ALARM", "Settings/onCreate", "is alarmOn?" + settings.getBoolean("alamrOn", true), 1);
 
         if(settings.getBoolean("alarmOn", true)) {
             startButton.setEnabled(false);
