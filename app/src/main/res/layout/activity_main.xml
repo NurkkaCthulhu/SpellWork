@@ -50,7 +50,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="43dp"
-        android:text="Sample text"
+        android:text="Hi"
         android:textColor="@android:color/black"
         android:gravity="center|top"/>
 

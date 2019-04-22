@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Spellwork</string>
+    <string name="app_name">SpellWork</string>
     <string-array name="greetings">
         <item>Are you ready to check your workouts, nyapprentice?</item>
         <item>Meowdy.</item>
