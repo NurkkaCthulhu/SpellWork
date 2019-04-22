@@ -7,8 +7,26 @@ import android.view.View;
 import com.anumalm.spellwork.utilities.MusicManager;
 import com.anumalm.spellwork.utilities.Utils;
 
+/**
+ * Activity that all other activities extend.
+ *
+ * Use to minimize copied code in lifetime methods.
+ *
+ *  * @author      Anu Malm     anu.malm@tuni.fi
+ *  * @version     2019.04.22
+ *  * @since       3.0
+ */
 public abstract class SpellworkActivity extends AppCompatActivity {
 
+    /**
+     * AppCompatActivity's onCreate method.
+     *
+     * Creates MusicManager's MediaPlayer, starts playing music and sets pauseable to true.
+     * MusicManager handles checks whether the player needs to be created or if music should
+     * start playing again etc.
+     *
+     * @param savedInstanceState            Bundle that's somewhere in AppCompatActivity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,11 +36,6 @@ public abstract class SpellworkActivity extends AppCompatActivity {
         MusicManager.setPause(true);
 
         getViewAndHideUI();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     /**
@@ -52,12 +65,22 @@ public abstract class SpellworkActivity extends AppCompatActivity {
         Utils.hideSystemUI(decorView);
     }
 
+    /**
+     * Called when the activity is on pause.
+     *
+     * Calls MusicManager's pauseMusic-method so music does not play on the background.
+     */
     @Override
     public void onPause() {
         super.onPause();
         MusicManager.pauseMusic();
     }
 
+    /**
+     * Called when activity is resumed.
+     *
+     * Calls MusicMAnager's playMusic-method so music starts to play again.
+     */
     @Override
     public void onResume() {
         super.onResume();
