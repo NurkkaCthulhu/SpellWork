@@ -23,7 +23,6 @@ import com.anumalm.spellwork.utilities.Debug;
  */
 public class Alarm extends BroadcastReceiver {
 
-    private int timerMinutes = 1;
     /**
      * Overrides BroadcastReceiver's onReceive-method.
      *
@@ -65,6 +64,7 @@ public class Alarm extends BroadcastReceiver {
      * @param context           The Context that called this method.
      */
     public void setAlarm(Context context) {
+        int timerMinutes = 20;
         Debug.log("ALARM", "Alarm/setAlarm", "Setting alarm...", 1);
 
         AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
