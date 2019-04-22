@@ -22,6 +22,8 @@ import com.anumalm.spellwork.utilities.Debug;
  */
 public class Alarm extends BroadcastReceiver {
 
+
+    private int timerMinutes = 1;
     /**
      * Overrides BroadcastReceiver's onReceive-method.
      *
@@ -38,7 +40,7 @@ public class Alarm extends BroadcastReceiver {
 
         Debug.log("ALARM", "Alarm/onReceive", "Time to send notification!", 1);
 
-        showNotification(context, intent);
+        showNotification(context);
 
         wl.release();
     }
@@ -55,7 +57,7 @@ public class Alarm extends BroadcastReceiver {
         AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, Alarm.class);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 60 * 1, pi); // Millisec * Second * Minute
+        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 60 * timerMinutes, pi); // Millisec * Second * Minute
     }
 
     /**
@@ -75,11 +77,11 @@ public class Alarm extends BroadcastReceiver {
     /**
      * Method for showing a notification.
      *
-     * Has custom sound and vibrates the phone when triggered.
+     * Has custom sound and vibrates the phone when triggered on Androids before Oreo.
      *
      * @param context           The Context in which the receiver is running.
      */
-    private void showNotification(Context context, Intent intent) {
+    private void showNotification(Context context) {
         String channelId = "my_channel_01";
         String channelName = "Spellword alarms";
 

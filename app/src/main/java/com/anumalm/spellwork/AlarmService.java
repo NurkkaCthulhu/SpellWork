@@ -2,6 +2,7 @@ package com.anumalm.spellwork;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 
 import com.anumalm.spellwork.utilities.Debug;
@@ -17,8 +18,9 @@ import com.anumalm.spellwork.utilities.Debug;
  */
 public class AlarmService extends Service {
 
-    Alarm alarm = new Alarm();
-    boolean alarmStarted = false;
+    private Alarm alarm = new Alarm();
+    private boolean alarmStarted = false;
+    private SharedPreferences settings;
 
     /**
      * Overrides Service's onCreate-method.
@@ -27,6 +29,7 @@ public class AlarmService extends Service {
     public void onCreate() {
         super.onCreate();
         Debug.log("ALARM", "AlarmService/onCreate", "Service was started", 1);
+        settings = getSharedPreferences("UserSettings", 0);
     }
 
     /**
@@ -42,6 +45,9 @@ public class AlarmService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (!alarmStarted) {
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("alarmOn", true);
+            editor.apply();
             alarmStarted = true;
             alarm.setAlarm(this);
         }
@@ -64,9 +70,11 @@ public class AlarmService extends Service {
     public void onDestroy() {
         Debug.log("ALARM", "AlarmService/onCreate", "Service was stopped", 1);
 
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("alarmOn", false);
+        editor.apply();
         alarm.cancelAlarm(this);
 
     }
-
 
 }

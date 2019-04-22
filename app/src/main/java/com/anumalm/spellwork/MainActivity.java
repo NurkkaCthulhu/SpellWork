@@ -67,9 +67,7 @@ public class MainActivity extends SpellworkActivity {
         if (!settingsInit) {
             Debug.log("ALARM", "MainActivity/createDefaultSettings", "No settings found, creating default ones", 2);
             SharedPreferences.Editor editor = settings.edit();
-            editor.putString("TestOne", "This is test");
-            editor.putString("TestTwo", "This test");
-            editor.putInt("workouttimer", 30);
+            editor.putBoolean("alarmOn", false);
             editor.putBoolean("initted", true);
             editor.commit();
         }

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.anumalm.spellwork.utilities.Debug;
@@ -20,6 +21,10 @@ import com.anumalm.spellwork.utilities.Utils;
  */
 public class SettingsActivity extends SpellworkActivity {
 
+    private Button startButton;
+    private Button stopButton;
+    private SharedPreferences settings;
+
     /**
      * Overrides AppCompatActivity's onCreate-method.
      *
@@ -31,6 +36,18 @@ public class SettingsActivity extends SpellworkActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        startButton = findViewById(R.id.start);
+        stopButton = findViewById(R.id.stop);
+
+        settings = getSharedPreferences("UserSettings", 0);
+
+        if(settings.getBoolean("alarmOn", true)) {
+            startButton.setEnabled(false);
+            stopButton.setEnabled(true);
+        } else {
+            startButton.setEnabled(true);
+            stopButton.setEnabled(false);
+        }
     }
 
     /**
@@ -43,11 +60,15 @@ public class SettingsActivity extends SpellworkActivity {
     public void manageAlarm(View v) {
         if (v.getId() == R.id.start) {
             Utils.playButtonSound();
+            startButton.setEnabled(false);
+            stopButton.setEnabled(true);
             Debug.log("ALARM", "MainActivity/manageAlarm", "start button pressed", 2);
             Intent i = new Intent(this, AlarmService.class);
             startService(i);
         } else if (v.getId() == R.id.stop) {
             Utils.playButtonSound();
+            startButton.setEnabled(true);
+            stopButton.setEnabled(false);
             Debug.log("ALARM", "MainActivity/manageAlarm", "stop button pressed", 2);
             Intent i = new Intent(this, AlarmService.class);
             stopService(i);
