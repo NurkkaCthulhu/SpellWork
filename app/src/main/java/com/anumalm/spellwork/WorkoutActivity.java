@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.anumalm.spellwork.utilities.Debug;
@@ -24,6 +25,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class WorkoutActivity extends SpellworkActivity {
 
+    private SharedPreferences settings;
+
     /**
      * Overrides AppCompatActivity's onCreate-method.
      *
@@ -36,18 +39,34 @@ public class WorkoutActivity extends SpellworkActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
 
-        Workout wo = new JumpingJacks(10, true);
+        settings = getSharedPreferences("UserSettings", 0);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        TextView top = findViewById(R.id.topTime);
-        LocalTime current = java.time.LocalTime.now();
-        String timeText = formatter.format(current);
-        top.setText(timeText);
-        ImageView iw = findViewById(R.id.topWorkoutImg);
-        iw.setImageResource(((JumpingJacks) wo).getGraphic());
+        RelativeLayout top = findViewById(R.id.workoutBox_top);
+        RelativeLayout middle = findViewById(R.id.workoutBox_middle);
+        RelativeLayout bottom = findViewById(R.id.workoutBox_bottom);
+
+        top.setOnClickListener(v -> {
+            Debug.log("WORKOUT", "WorkoutActivity/onCreate", "top clicked", 1);
+            increaseCurrency();
+        });
+        middle.setOnClickListener(v -> {
+            Debug.log("WORKOUT", "WorkoutActivity/onCreate", "middle clicked", 1);
+            increaseCurrency();
+        });
+        bottom.setOnClickListener(v -> {
+            Debug.log("WORKOUT", "WorkoutActivity/onCreate", "bottom clicked", 1);
+            increaseCurrency();
+        });
 
     }
 
+    private void increaseCurrency() {
+        SharedPreferences.Editor editor = settings.edit();
+        int currentCurrency = settings.getInt("currency", -1);
+        currentCurrency += 5;
+        editor.putInt("currency", currentCurrency);
+        editor.commit();
+    }
 
     /**
      * Called when back button has been clicked.
