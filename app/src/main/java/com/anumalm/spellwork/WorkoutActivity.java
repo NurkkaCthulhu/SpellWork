@@ -10,11 +10,6 @@ import android.widget.TextView;
 import com.anumalm.spellwork.utilities.Debug;
 import com.anumalm.spellwork.utilities.MusicManager;
 import com.anumalm.spellwork.utilities.Utils;
-import com.anumalm.spellwork.workouts.Workout;
-import com.anumalm.spellwork.workouts.JumpingJacks;
-
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Screen that shows the current workouts for the user.
@@ -44,14 +39,17 @@ public class WorkoutActivity extends SpellworkActivity {
         top.setOnClickListener(v -> {
             Debug.log("WORKOUT", "WorkoutActivity/onCreate", "top clicked", 1);
             increaseCurrency();
+            top.setVisibility(View.INVISIBLE);
         });
         middle.setOnClickListener(v -> {
             Debug.log("WORKOUT", "WorkoutActivity/onCreate", "middle clicked", 1);
             increaseCurrency();
+            middle.setVisibility(View.INVISIBLE);
         });
         bottom.setOnClickListener(v -> {
             Debug.log("WORKOUT", "WorkoutActivity/onCreate", "bottom clicked", 1);
             increaseCurrency();
+            bottom.setVisibility(View.INVISIBLE);
         });
 
     }
@@ -60,17 +58,12 @@ public class WorkoutActivity extends SpellworkActivity {
      * Increase player's currency and save it to settings.
      */
     private void increaseCurrency() {
-        SharedPreferences settings = getApplicationContext().getSharedPreferences("UserSettings", 0);
-        boolean allowWorkout = settings.getBoolean("allowWorkout", false);
-        Debug.log("WORKOUT", "WorkoutActivity/increaseCurrency", "allowWorkout? " + settings.getAll(), 1);
-        if(allowWorkout) {
-            SharedPreferences.Editor editor = settings.edit();
-            int currentCurrency = settings.getInt("currency", -1);
-            currentCurrency += 5;
-            editor.putInt("currency", currentCurrency);
-            editor.putBoolean("allowWorkout", false);
-            editor.apply();
-        }
+        SharedPreferences settings = getSharedPreferences("UserSettings", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        int currentCurrency = settings.getInt("currency", -1);
+        currentCurrency += 5;
+        editor.putInt("currency", currentCurrency);
+        editor.apply();
     }
 
     /**
